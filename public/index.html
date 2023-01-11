@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Real Estates</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <link rel="stylesheet" href="./css/bootstrap.min.css" />
+  <body>
+    <div id="app" class="container">
+      <br>
+      Get latest offers here:
+      <button @click="getImmos" class="btn btn-outline-primary">Show</button><br><br>
+      <div class="d-flex">
+        <input v-model="inPrice" class="form-control w-25 me-3" type="text">
+        <button @click="changePrice" class="btn btn-outline-success fa-solid fa-check"></button>
+      </div> <br>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Title</th>
+            <th scope="col">Address</th>
+            <th scope="col">Price</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="i in immos" class="align-middle">
+            <td>
+              <img :src="i.image" width="130"/>
+            </td>
+            <td>{{ i.title }}</td>
+            <td>{{ i.postCode }}<br> {{ i.city }}<br> {{ i.country }}</td>
+            <td>{{ i.price.toLocaleString({style: "currency", currency: "EUR"}) }} €</td>
+            <td>
+              <button class="btn btn-outline-danger fa-regular fa-trash-can" @click="delImmos(i.id)"></button>
+              <button @click="savePrice(i.id, i.price)" class="btn btn-outline-primary fa-solid fa-pencil"></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.45/vue.global.min.js"></script>
+    <script src="./js/app.js"></script>
+  </body>
+</html>

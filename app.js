@@ -12,8 +12,6 @@ import immoRouter from './routes/immo.js';
 dotenv.config();
 const app = express();
 
-app.use(cors());
-app.use(helmet());
 app.use(morgan('tiny'));
 app.use(express.json());
 app.use('/', immoRouter);
